@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anchor Links Golf Club | Indoor Golf Simulators | Irmo, SC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:      #0A0F1E;
+    --navy-mid:  #111827;
+    --navy-lt:   #1C2740;
+    --navy-card: #162035;
+    --brass:     #B8862A;
+    --brass-lt:  #D4A84B;
+    --brass-dim: rgba(184,134,42,0.12);
+    --copper:    #C97B3A;
+    --green:     #1A3A2A;
+    --green-lt:  #2A5A40;
+    --cream:     #F5F0E5;
+    --white:     #FAFAF8;
+    --muted:     rgba(245,240,229,0.45);
+    --subtle:    rgba(245,240,229,0.08);
+    --line:      rgba(184,134,42,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── DEMO BANNER ── */
+  .demo-banner {
+    background: var(--brass);
+    padding: .55rem 2rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 1.5rem; position: sticky; top: 0; z-index: 9999;
+  }
+  .demo-banner p {
+    font-size: .7rem; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--navy);
+  }
+  .demo-banner a {
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--navy); text-decoration: none;
+    border-bottom: 1px solid rgba(10,15,30,.4);
+    white-space: nowrap; transition: border-color .2s;
+  }
+  .demo-banner a:hover { border-color: var(--navy); }
+  .demo-div { width: 1px; height: .9rem; background: rgba(10,15,30,.25); }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 32px; z-index: 100;
+    background: rgba(10,15,30,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+    padding: 1.4rem 5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex; align-items: center; gap: 1.2rem;
+  }
+  .brand-anchor {
+    width: 2.8rem; height: 2.8rem;
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; color: var(--brass);
+    flex-shrink: 0;
+  }
+  .brand-text {}
+  .brand-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.15rem; font-weight: 700;
+    letter-spacing: .06em; color: var(--white);
+    display: block;
+  }
+  .brand-sub {
+    font-size: .58rem; letter-spacing: .26em;
+    text-transform: uppercase; color: var(--muted);
+    margin-top: .1rem;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: .72rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--brass-lt); }
+
+  .nav-actions { display: flex; gap: .8rem; align-items: center; }
+  .nav-phone {
+    font-size: .82rem; font-weight: 400;
+    letter-spacing: .05em; color: var(--cream);
+    text-decoration: none; transition: color .2s;
+  }
+  .nav-phone:hover { color: var(--brass-lt); }
+  .nav-book {
+    background: var(--brass); color: var(--navy);
+    font-size: .68rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    padding: .7rem 1.6rem; text-decoration: none;
+    transition: all .3s;
+  }
+  .nav-book:hover { background: var(--brass-lt); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: calc(100vh - 32px);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+  }
+
+  /* Fairway green bottom-right panel */
+  .hero-panel {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 44%;
+    background: var(--green);
+    clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  .hero-panel::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(42,90,64,0.6) 0%, transparent 60%),
+      repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.012) 0px,
+        rgba(255,255,255,0.012) 1px,
+        transparent 1px,
+        transparent 12px
+      );
+  }
+  /* Brass diagonal rule */
+  .hero-rule {
+    position: absolute;
+    top: 0; bottom: 0;
+    right: 44%;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, var(--brass), transparent);
+    clip-path: polygon(0 5%, 100% 0%, 100% 95%, 0% 100%);
+  }
+
+  /* Subtle dot texture */
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(184,134,42,0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1400px; margin: 0 auto; width: 100%;
+    padding: 6rem 5rem;
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: 5rem; align-items: center;
+    position: relative; z-index: 2;
+  }
+
+  .hero-left {}
+
+  .hero-kicker {
+    display: inline-flex; align-items: center; gap: .8rem;
+    margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp .7s .1s forwards;
+  }
+  .kicker-rule { width: 2.5rem; height: 1px; background: var(--brass); }
+  .kicker-text {
+    font-size: .65rem; font-weight: 600;
+    letter-spacing: .3em; text-transform: uppercase;
+    color: var(--brass);
+  }
+
+  .hero-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(3rem, 5.5vw, 6.5rem);
+    font-weight: 700;
+    line-height: .96;
+    color: var(--white);
+    margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp .7s .3s forwards;
+  }
+  .hero-title span {
+    display: block; color: var(--brass);
+    font-style: italic; font-weight: 400;
+    font-size: .85em;
+  }
+
+  .hero-body {
+    font-size: 1rem; line-height: 1.85;
+    color: var(--muted); max-width: 46ch;
+    margin-bottom: 3.5rem;
+    opacity: 0; animation: fadeUp .7s .5s forwards;
+  }
+  .hero-body strong { color: var(--cream); font-weight: 500; }
+
+  .hero-actions {
+    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp .7s .7s forwards;
+  }
+  .btn-brass {
+    background: var(--brass); color: var(--navy);
+    font-size: .74rem; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase;
+    padding: 1.1rem 2.8rem; text-decoration: none;
+    transition: all .3s; display: inline-flex; align-items: center; gap: .6rem;
+  }
+  .btn-brass:hover { background: var(--brass-lt); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(184,134,42,.25); }
+  .btn-ghost {
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-size: .74rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase;
+    padding: 1.1rem 2rem; text-decoration: none;
+    transition: all .3s;
+  }
+  .btn-ghost:hover { border-color: var(--brass); color: var(--brass); }
+
+  .hero-stats {
+    display: flex; gap: 3rem;
+    margin-top: 4rem; padding-top: 3rem;
+    border-top: 1px solid var(--line);
+    opacity: 0; animation: fadeUp .7s .9s forwards;
+  }
+  .hs-item {}
+  .hs-num {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2.2rem; font-weight: 700;
+    color: var(--brass-lt); display: block; line-height: 1;
+  }
+  .hs-label {
+    font-size: .65rem; font-weight: 500;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--muted); margin-top: .3rem;
+  }
+
+  /* Hero right — booking card */
+  .hero-right {
+    opacity: 0; animation: fadeIn .9s 1.1s forwards;
+  }
+
+  .book-card {
+    background: var(--navy-card);
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .book-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--brass), var(--copper));
+  }
+
+  .bc-header {
+    padding: 2.5rem 3rem 0;
+    border-bottom: 1px solid var(--subtle);
+    padding-bottom: 2rem;
+  }
+  .bc-pretitle {
+    font-size: .6rem; font-weight: 600;
+    letter-spacing: .28em; text-transform: uppercase;
+    color: var(--brass); margin-bottom: .6rem;
+  }
+  .bc-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.6rem; color: var(--white);
+    line-height: 1.3;
+  }
+
+  .bc-bays {
+    padding: 2rem 3rem;
+    display: flex; flex-direction: column; gap: 1rem;
+    border-bottom: 1px solid var(--subtle);
+  }
+  .bay-row {
+    display: flex; justify-content: space-between;
+    align-items: center; padding: 1rem 1.2rem;
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--subtle);
+    transition: border-color .3s, background .3s;
+    cursor: pointer;
+  }
+  .bay-row:hover { border-color: var(--brass); background: var(--brass-dim); }
+  .bay-name { font-size: .88rem; font-weight: 500; color: var(--cream); }
+  .bay-detail { font-size: .75rem; color: var(--muted); margin-top: .15rem; }
+  .bay-price {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem; color: var(--brass-lt); font-weight: 700;
+    text-align: right;
+  }
+  .bay-unit { font-size: .62rem; color: var(--muted); }
+
+  .bc-form {
+    padding: 2rem 3rem 2.5rem;
+    display: flex; flex-direction: column; gap: .9rem;
+  }
+  .bfc-row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+  .bfc-group { display: flex; flex-direction: column; gap: .3rem; }
+  .bfc-label {
+    font-size: .58rem; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .bfc-input, .bfc-select {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--subtle);
+    color: var(--cream); padding: .75rem .9rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: .88rem; font-weight: 300;
+    outline: none; width: 100%;
+    transition: border-color .3s, background .3s;
+  }
+  .bfc-input::placeholder { color: rgba(245,240,229,.2); }
+  .bfc-input:focus, .bfc-select:focus {
+    border-color: var(--brass); background: var(--brass-dim);
+  }
+  .bfc-select option { background: var(--navy-mid); }
+  .bfc-submit {
+    background: var(--brass); color: var(--navy);
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase;
+    padding: 1rem; border: none;
+    font-family: 'Barlow', sans-serif;
+    cursor: pointer; transition: all .3s;
+    margin-top: .3rem;
+  }
+  .bfc-submit:hover { background: var(--brass-lt); }
+
+  /* ── SECTION SHARED ── */
+  .section-kicker {
+    font-size: .62rem; font-weight: 600;
+    letter-spacing: .3em; text-transform: uppercase;
+    color: var(--brass); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: .8rem;
+  }
+  .section-kicker::before {
+    content: '⚓'; font-size: .7rem;
+  }
+  .section-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 700; line-height: 1.05;
+    color: var(--white); margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--brass-lt); font-weight: 400; }
+  .section-sub {
+    font-size: 1rem; line-height: 1.85;
+    color: var(--muted); max-width: 52ch;
+    margin-bottom: 4rem;
+  }
+
+  /* ── SIMULATORS ── */
+  .sims-section {
+    padding: 9rem 5rem;
+    background: var(--navy-mid);
+    border-top: 1px solid var(--line);
+  }
+  .sims-inner { max-width: 1400px; margin: 0 auto; }
+
+  .sims-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem;
+  }
+
+  .sim-card {
+    background: var(--navy-card);
+    border: 1px solid var(--line);
+    padding: 3rem 2.5rem;
+    position: relative; overflow: hidden;
+    transition: transform .3s, border-color .3s;
+  }
+  .sim-card:hover { transform: translateY(-4px); border-color: var(--brass); }
+  .sim-card.featured {
+    border-color: var(--brass);
+    background: linear-gradient(160deg, var(--navy-card), var(--green));
+  }
+
+  .sim-badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: var(--brass); color: var(--navy);
+    font-size: .6rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    padding: .3rem .8rem;
+  }
+
+  .sim-icon { font-size: 2.2rem; margin-bottom: 1.5rem; display: block; }
+  .sim-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--white); margin-bottom: .8rem;
+  }
+  .sim-desc {
+    font-size: .88rem; line-height: 1.8;
+    color: var(--muted); margin-bottom: 1.5rem;
+  }
+  .sim-price {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--brass-lt);
+  }
+  .sim-price span {
+    font-family: 'Barlow', sans-serif;
+    font-size: .75rem; color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-section {
+    padding: 9rem 5rem;
+    background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+  .exp-section::after {
+    content: '⚓';
+    font-size: 40vw;
+    color: rgba(184,134,42,0.025);
+    position: absolute; right: -5vw; top: 50%;
+    transform: translateY(-50%);
+    line-height: 1; pointer-events: none;
+  }
+  .exp-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+
+  .exp-visual {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .exp-frame {
+    background: var(--navy-card);
+    border: 1px solid var(--line);
+    height: 260px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ef-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 5rem; font-weight: 700;
+    color: rgba(184,134,42,0.07);
+    user-select: none;
+  }
+  .exp-frame-sub {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+  }
+  .ef-mini {
+    background: var(--navy-card);
+    border: 1px solid var(--line);
+    height: 120px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    transition: border-color .3s;
+  }
+  .ef-mini:hover { border-color: var(--brass); }
+
+  .exp-content .section-title { margin-bottom: 1.5rem; }
+  .exp-body {
+    font-size: 1rem; line-height: 1.85;
+    color: var(--muted); margin-bottom: 1.5rem;
+  }
+  .exp-features {
+    display: flex; flex-direction: column; gap: .9rem;
+    margin-top: 2rem;
+  }
+  .ef-item {
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: 1rem 1.5rem;
+    background: var(--navy-card);
+    border: 1px solid var(--subtle);
+    transition: border-color .3s;
+  }
+  .ef-item:hover { border-color: var(--brass); }
+  .ef-brass {
+    width: 2rem; height: 2rem;
+    background: var(--brass-dim);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; flex-shrink: 0;
+  }
+  .ef-text { font-size: .9rem; color: var(--cream); }
+
+  /* ── MEMBERSHIPS ── */
+  .members-section {
+    padding: 9rem 5rem;
+    background: var(--green);
+    position: relative;
+  }
+  .members-section::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+  }
+  .members-inner { max-width: 1400px; margin: 0 auto; }
+
+  .members-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 0; background: rgba(255,255,255,.06);
+  }
+
+  .mem-card {
+    background: var(--green);
+    padding: 3.5rem 3rem;
+    border-right: 1px solid rgba(255,255,255,.06);
+    position: relative; transition: background .3s;
+  }
+  .mem-card:last-child { border-right: none; }
+  .mem-card:hover { background: var(--green-lt); }
+  .mem-card.best {
+    background: var(--green-lt);
+  }
+  .mem-badge {
+    position: absolute; top: 2rem; right: 2rem;
+    background: var(--brass); color: var(--navy);
+    font-size: .58rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    padding: .3rem .75rem;
+  }
+
+  .mem-tier {
+    font-size: .62rem; font-weight: 600;
+    letter-spacing: .26em; text-transform: uppercase;
+    color: var(--brass); margin-bottom: .6rem;
+  }
+  .mem-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--white); margin-bottom: .3rem;
+  }
+  .mem-price {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 3rem; font-weight: 700;
+    color: var(--brass-lt); line-height: 1;
+    margin: 1.2rem 0;
+  }
+  .mem-price span {
+    font-family: 'Barlow', sans-serif;
+    font-size: .8rem; font-weight: 300; color: var(--muted);
+  }
+
+  .mem-divider { height: 1px; background: rgba(255,255,255,.1); margin: 1.5rem 0; }
+
+  .mem-perks { display: flex; flex-direction: column; gap: .7rem; }
+  .mp { display: flex; align-items: center; gap: .8rem; font-size: .85rem; color: rgba(245,240,229,.75); }
+  .mp-check { color: var(--brass); font-size: .8rem; flex-shrink: 0; }
+
+  .mem-cta {
+    display: block; text-align: center;
+    margin-top: 2rem; padding: .85rem;
+    background: rgba(184,134,42,.15);
+    border: 1px solid var(--line);
+    color: var(--brass-lt); text-decoration: none;
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase;
+    transition: all .3s;
+  }
+  .mem-cta:hover { background: var(--brass); color: var(--navy); }
+  .mem-card.best .mem-cta {
+    background: var(--brass); color: var(--navy);
+  }
+  .mem-card.best .mem-cta:hover { background: var(--brass-lt); }
+
+  /* ── REVIEWS ── */
+  .reviews-section {
+    padding: 9rem 5rem;
+    background: var(--navy-mid);
+    border-top: 1px solid var(--line);
+  }
+  .reviews-inner { max-width: 1400px; margin: 0 auto; }
+
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem; margin-top: 4rem;
+  }
+  .rv-card {
+    background: var(--navy-card);
+    border: 1px solid var(--line);
+    padding: 2.8rem;
+    transition: border-color .3s;
+  }
+  .rv-card:hover { border-color: var(--brass); }
+  .rv-stars { color: var(--brass); font-size: .85rem; letter-spacing: .1em; margin-bottom: 1.2rem; }
+  .rv-text {
+    font-family: 'Libre Baskerville', serif;
+    font-size: .95rem; font-style: italic;
+    line-height: 1.75; color: var(--cream); margin-bottom: 1.5rem;
+  }
+  .rv-divider { height: 1px; background: var(--subtle); margin-bottom: 1rem; }
+  .rv-author {
+    font-size: .65rem; font-weight: 600;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid var(--line);
+    padding: 2.5rem 5rem;
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-brand { display: flex; align-items: center; gap: .8rem; }
+  .footer-anchor { font-size: 1.2rem; color: var(--brass); }
+  .footer-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem; font-weight: 700; color: var(--white);
+  }
+  .footer-copy { font-size: .68rem; color: rgba(245,240,229,.25); }
+  .footer-cred { font-size: .62rem; color: rgba(184,134,42,.3); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .65s, transform .65s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    nav { padding: 1.1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+    .hero-right { display: none; }
+    .hero-panel, .hero-rule { display: none; }
+    .sims-grid, .members-grid { grid-template-columns: 1fr; background: none; gap: 1.2rem; }
+    .exp-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .sims-section, .exp-section, .members-section, .reviews-section { padding: 5rem 1.5rem; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+    .bfc-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  <p>⚠ Demo — Built by PalmettoAI</p>
+  <div class="demo-div"></div>
+  <p>Not the live Anchor Links website</p>
+  <div class="demo-div"></div>
+  <a href="mailto:tony@palmettoai.com">Get yours → PalmettoAI</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="brand-anchor">⚓</div>
+    <div class="brand-text">
+      <span class="brand-name">Anchor Links</span>
+      <span class="brand-sub">Golf Club · Irmo, SC</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#simulators">Simulators</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#memberships">Memberships</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="tel:8038341718" class="nav-phone">(803) 834-1718</a>
+    <a href="#book" class="nav-book">Book a Bay</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-panel"></div>
+  <div class="hero-rule"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-kicker">
+        <span class="kicker-rule"></span>
+        <span class="kicker-text">Indoor Golf · Irmo, SC · Open Year-Round</span>
+      </div>
+      <h1 class="hero-title">
+        Play More.<br/>
+        <span>Rain or Shine.</span><br/>
+        Score Lower.
+      </h1>
+      <p class="hero-body">
+        <strong>Anchor Links is Irmo's premier indoor golf club.</strong> State-of-the-art simulators. Private bays. Trackman technology. No tee times, no dress code, no weather excuses — just golf the way it should be.
+      </p>
+      <div class="hero-actions">
+        <a href="#book" class="btn-brass">⛳ Book a Bay Now</a>
+        <a href="#simulators" class="btn-ghost">View Bay Options →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hs-item">
+          <span class="hs-num">4</span>
+          <span class="hs-label">Private Bays</span>
+        </div>
+        <div class="hs-item">
+          <span class="hs-num">40K+</span>
+          <span class="hs-label">World Courses</span>
+        </div>
+        <div class="hs-item">
+          <span class="hs-num">365</span>
+          <span class="hs-label">Days a Year</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right" id="book">
+      <div class="book-card">
+        <div class="bc-header">
+          <p class="bc-pretitle">⚓ Reserve Your Bay</p>
+          <h3 class="bc-title">Pick Your Session,<br/>Book Instantly.</h3>
+        </div>
+        <div class="bc-bays">
+          <div class="bay-row">
+            <div>
+              <p class="bay-name">Single Bay — 1 Hour</p>
+              <p class="bay-detail">Up to 4 players · Walk-ins welcome</p>
+            </div>
+            <div>
+              <p class="bay-price">$45</p>
+              <p class="bay-unit">/hour</p>
+            </div>
+          </div>
+          <div class="bay-row">
+            <div>
+              <p class="bay-name">Bay Block — 2 Hours</p>
+              <p class="bay-detail">Best value · Full round on any course</p>
+            </div>
+            <div>
+              <p class="bay-price">$80</p>
+              <p class="bay-unit">/2 hrs</p>
+            </div>
+          </div>
+          <div class="bay-row">
+            <div>
+              <p class="bay-name">Private Event / League</p>
+              <p class="bay-detail">Corporate events, bachelor parties, leagues</p>
+            </div>
+            <div>
+              <p class="bay-price">Call</p>
+              <p class="bay-unit">us</p>
+            </div>
+          </div>
+        </div>
+        <form class="bc-form" onsubmit="handleBook(event)">
+          <div class="bfc-row">
+            <div class="bfc-group">
+              <label class="bfc-label">Your Name</label>
+              <input class="bfc-input" type="text" placeholder="John Smith" required/>
+            </div>
+            <div class="bfc-group">
+              <label class="bfc-label">Phone</label>
+              <input class="bfc-input" type="tel" placeholder="(803) 555-0100" required/>
+            </div>
+          </div>
+          <div class="bfc-group">
+            <label class="bfc-label">Preferred Date &amp; Time</label>
+            <input class="bfc-input" type="text" placeholder="e.g. Saturday, 2pm"/>
+          </div>
+          <button type="submit" class="bfc-submit">⛳ Request My Bay →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATORS -->
+<section id="simulators" class="sims-section">
+  <div class="sims-inner">
+    <p class="section-kicker reveal">Bay Options</p>
+    <h2 class="section-title reveal">Three Ways to<br/><em>Play Anchor Links.</em></h2>
+    <p class="section-sub reveal">Whether you're a casual weekend hacker or a serious scratch golfer, we have a bay setup and pricing that works for you.</p>
+    <div class="sims-grid reveal">
+      <div class="sim-card">
+        <span class="sim-icon">⛳</span>
+        <h3 class="sim-title">Drop-In Bay</h3>
+        <p class="sim-desc">No reservation required. Walk in, pick a course from our library of 40,000+ real-world courses, and start swinging. Perfect for a quick range session or casual round.</p>
+        <p class="sim-price">$45 <span>/ hr</span></p>
+      </div>
+      <div class="sim-card featured">
+        <span class="sim-badge">Most Popular</span>
+        <span class="sim-icon">🏌️</span>
+        <h3 class="sim-title">Bay Block</h3>
+        <p class="sim-desc">Two full hours to finish a proper 18-hole round with your crew. Trackman data after every shot — see your carry distance, ball speed, spin rate, and shot shape in real time.</p>
+        <p class="sim-price">$80 <span>/ 2 hrs</span></p>
+      </div>
+      <div class="sim-card">
+        <span class="sim-icon">🏆</span>
+        <h3 class="sim-title">Event &amp; League Play</h3>
+        <p class="sim-desc">Corporate outings, bachelor parties, competitive leagues, and private events. We handle the setup — you bring the group. Custom scoring, food &amp; beverage, and full bay rental available.</p>
+        <p class="sim-price">Custom <span>pricing</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="exp-section">
+  <div class="exp-inner">
+    <div class="exp-visual reveal">
+      <div class="exp-frame">
+        <span class="ef-label">GOLF</span>
+      </div>
+      <div class="exp-frame-sub">
+        <div class="ef-mini">🏌️</div>
+        <div class="ef-mini">📊</div>
+        <div class="ef-mini">🍺</div>
+        <div class="ef-mini">🏆</div>
+      </div>
+    </div>
+    <div class="exp-content">
+      <p class="section-kicker reveal">The Experience</p>
+      <h2 class="section-title reveal">More Than<br/><em>Just Swings.</em></h2>
+      <p class="exp-body reveal">
+        Anchor Links isn't a driving range with a screen. It's a full golf experience — with the accuracy and detail of Trackman technology, the comfort of private bays, and the social atmosphere that makes every session memorable.
+      </p>
+      <p class="exp-body reveal">
+        Bring your own clubs or use ours. Bring your own drinks or order from our menu. Just show up and play — on Pebble Beach, St. Andrews, Augusta National, or any of 40,000+ courses worldwide.
+      </p>
+      <div class="exp-features reveal">
+        <div class="ef-item">
+          <div class="ef-brass">📡</div>
+          <span class="ef-text">Trackman technology — the same system used by Tour pros</span>
+        </div>
+        <div class="ef-item">
+          <div class="ef-brass">🌍</div>
+          <span class="ef-text">40,000+ world-famous courses including Pebble Beach &amp; St. Andrews</span>
+        </div>
+        <div class="ef-item">
+          <div class="ef-brass">🔒</div>
+          <span class="ef-text">Private bays — your group, your pace, your vibe</span>
+        </div>
+        <div class="ef-item">
+          <div class="ef-brass">🍺</div>
+          <span class="ef-text">Bring your own drinks · BYOB friendly</span>
+        </div>
+        <div class="ef-item">
+          <div class="ef-brass">📅</div>
+          <span class="ef-text">Online booking 24/7 — instant confirmation, automatic reminders</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIPS -->
+<section id="memberships" class="members-section">
+  <div class="members-inner">
+    <p class="section-kicker reveal">Membership Plans</p>
+    <h2 class="section-title reveal">Play More.<br/><em>Pay Less.</em></h2>
+    <p class="section-sub reveal">Members get priority booking, discounted rates, and a reserved bay every week. For serious golfers, the math is easy.</p>
+    <div class="members-grid reveal">
+      <div class="mem-card">
+        <p class="mem-tier">Starter</p>
+        <h3 class="mem-title">Social Member</h3>
+        <p class="mem-price">$79<span>/mo</span></p>
+        <div class="mem-divider"></div>
+        <div class="mem-perks">
+          <div class="mp"><span class="mp-check">✓</span>4 hours/month included</div>
+          <div class="mp"><span class="mp-check">✓</span>Priority booking access</div>
+          <div class="mp"><span class="mp-check">✓</span>10% off additional hours</div>
+          <div class="mp"><span class="mp-check">✓</span>Guest pass — 1/month</div>
+        </div>
+        <a href="#book" class="mem-cta">Join Now →</a>
+      </div>
+      <div class="mem-card best">
+        <span class="mem-badge">Best Value</span>
+        <p class="mem-tier">Core</p>
+        <h3 class="mem-title">Club Member</h3>
+        <p class="mem-price">$149<span>/mo</span></p>
+        <div class="mem-divider"></div>
+        <div class="mem-perks">
+          <div class="mp"><span class="mp-check">✓</span>8 hours/month included</div>
+          <div class="mp"><span class="mp-check">✓</span>Reserved weekly bay time</div>
+          <div class="mp"><span class="mp-check">✓</span>20% off additional hours</div>
+          <div class="mp"><span class="mp-check">✓</span>Guest passes — 2/month</div>
+          <div class="mp"><span class="mp-check">✓</span>League play included</div>
+        </div>
+        <a href="#book" class="mem-cta">Join Now →</a>
+      </div>
+      <div class="mem-card">
+        <p class="mem-tier">Premium</p>
+        <h3 class="mem-title">Anchor Member</h3>
+        <p class="mem-price">$249<span>/mo</span></p>
+        <div class="mem-divider"></div>
+        <div class="mem-perks">
+          <div class="mp"><span class="mp-check">✓</span>Unlimited bay access</div>
+          <div class="mp"><span class="mp-check">✓</span>Priority 24/7 booking</div>
+          <div class="mp"><span class="mp-check">✓</span>Dedicated bay locker</div>
+          <div class="mp"><span class="mp-check">✓</span>Unlimited guest passes</div>
+          <div class="mp"><span class="mp-check">✓</span>Free private events (1/qtr)</div>
+        </div>
+        <a href="#book" class="mem-cta">Join Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="reviews-section">
+  <div class="reviews-inner">
+    <p class="section-kicker reveal">Reviews</p>
+    <h2 class="section-title reveal">What Members<br/><em>Are Saying.</em></h2>
+    <div class="reviews-grid reveal">
+      <div class="rv-card">
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-text">"I play here twice a week now. The Trackman data has actually improved my swing more than 10 years of Saturday lessons. And I get to play Pebble Beach in my lunch break — unreal."</p>
+        <div class="rv-divider"></div>
+        <p class="rv-author">— Club Member, Irmo SC</p>
+      </div>
+      <div class="rv-card">
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-text">"Threw my buddy's bachelor party here — 8 guys, 3 bays, our own drinks, competing on Augusta National. Best event I've ever planned. Everyone's still talking about it."</p>
+        <div class="rv-divider"></div>
+        <p class="rv-author">— Private Event Client</p>
+      </div>
+      <div class="rv-card">
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-text">"I was skeptical about indoor golf but the simulator is shockingly accurate. My outdoor scores have dropped 4 strokes since I became a member. Worth every penny."</p>
+        <div class="rv-divider"></div>
+        <p class="rv-author">— Social Member, Columbia SC</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="footer-anchor">⚓</span>
+    <span class="footer-name">Anchor Links Golf Club</span>
+  </div>
+  <p class="footer-copy">© 2026 Anchor Links Golf Club · Irmo, SC · (803) 834-1718</p>
+  <p class="footer-cred">Demo built by PalmettoAI · palmettoai.github.io</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => obs.observe(el));
+
+  function handleBook(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.bfc-submit');
+    btn.textContent = '⚓ Received! We\'ll confirm your bay shortly.';
+    btn.style.background = 'rgba(184,134,42,.2)';
+    btn.style.color = 'var(--brass-lt)';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
