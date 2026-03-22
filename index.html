@@ -636,10 +636,16 @@
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+  .nav-hamburger span{display:block;width:24px;height:2px;background:var(--brass);transition:all .3s;}
+
   /* ── RESPONSIVE ── */
   @media (max-width: 960px) {
     nav { padding: 1.1rem 1.5rem; }
     .nav-links { display: none; }
+    .nav-actions { display: none; }
+    .nav-hamburger{display:flex;}
+    .nav-links.nav-open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--navy-mid);padding:1.5rem 2rem;border-top:1px solid var(--line);gap:1.2rem;z-index:99;list-style:none;}
     .hero-inner { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
     .hero-right { display: none; }
     .hero-panel, .hero-rule { display: none; }
@@ -678,6 +684,7 @@
     <li><a href="#memberships">Memberships</a></li>
     <li><a href="#reviews">Reviews</a></li>
   </ul>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="nav-actions">
     <a href="tel:8038341718" class="nav-phone">(803) 834-1718</a>
     <a href="#book" class="nav-book">Book a Bay</a>
@@ -953,6 +960,8 @@
 </footer>
 
 <script>
+  document.querySelector('.nav-hamburger').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('nav-open');});
+
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
